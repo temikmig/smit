@@ -1,0 +1,26 @@
+.profileAvatar {
+  width: 40px;
+  height: 40px;
+
+  position: relative;
+}
+
+.profileAvatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.showProfileMenu {
+  width: 16px;
+  height: 16px;
+  background: var(--background-white);
+  border-radius: 50%;
+  border: 2px var(--background-blue) solid;
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

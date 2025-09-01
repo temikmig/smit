@@ -1,0 +1,16 @@
+.header {
+  grid-area: header;
+  background: var(--background-blue);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  font-weight: bold;
+}
+
+.profileCont {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
