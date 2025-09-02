@@ -1,9 +1,9 @@
-import type { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./SidebarMenuItem.module.css";
 import clsx from "clsx";
+import type { ReactNode } from "react";
 
-interface SidebarMenuItemProps {
+export interface SidebarMenuItemProps {
   title: string;
   icon?: ReactNode;
   navTo?: string;

@@ -1,11 +1,10 @@
 .header {
   grid-area: header;
-  background: var(--background-blue);
-  color: #fff;
+  color: #c4d4de;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 12px 24px 0px;
   font-weight: bold;
 }
 

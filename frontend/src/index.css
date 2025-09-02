@@ -12,29 +12,36 @@ html {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   line-height: 140%;
+  box-sizing: border-box;
 }
 
 body {
   height: 100%;
   margin: 0;
+  background: var(--background-body);
 }
 
 #root {
   display: grid;
   grid-template-columns: 200px 1fr;
-  grid-template-rows: 60px 1fr;
+  grid-template-rows: 72px 1fr;
   grid-template-areas:
-    "header header"
+    "sidebar header"
     "sidebar main";
   width: 100vw;
   height: 100vh;
 }
 
+main {
+  background: var(--background-white);
+}
+
 :root {
+  --background-body: #dce3e8;
+
   --background-white: #ffffff;
   --background-black: #1b1f21;
   --background-blue: #104e78;
-
   --text-black: #1b1f21;
 }
 
