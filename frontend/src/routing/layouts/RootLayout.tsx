@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Outlet } from "react-router-dom";
+import { Loader } from "../../components/ui/Loader";
 
 const LoadingScreen = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -7,12 +8,12 @@ const LoadingScreen = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
 
-  if (isLoading) return <div>Загрузка</div>;
+  if (isLoading) return <Loader fullscreen text />;
 
   return <>{children}</>;
 };

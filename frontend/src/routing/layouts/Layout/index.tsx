@@ -12,11 +12,15 @@ export const Layout = ({ withSuspense = false }: LayoutProps) => {
 
   return (
     <>
-      <Header />
       <Sidebar />
-      <main className={styles.box}>
-        <Outlet />
-      </main>
+      <div className={styles.container}>
+        <div className={styles.layoutBox}>
+          <Header />
+          <main className={styles.main}>
+            <Outlet />
+          </main>
+        </div>
+      </div>
     </>
   );
 };

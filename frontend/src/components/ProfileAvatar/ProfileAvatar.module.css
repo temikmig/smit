@@ -1,3 +1,25 @@
+.profileContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.profileName {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.profileName h2 {
+  font-size: 12px;
+  height: 16px;
+}
+
+.profileName p {
+  height: 16px;
+}
+
 .profileAvatar {
   width: 48px;
   height: 48px;

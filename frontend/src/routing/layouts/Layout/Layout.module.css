@@ -1,5 +1,10 @@
-main {
-  margin: 0px 32px 32px 32px;
+.container {
+  height: 100vh;
+  padding: 5px 5px 5px 0px;
+}
+
+.layoutBox {
+  background: var(--background-layout);
   border-radius: 32px;
-  padding: 32px;
+  height: 100%;
 }

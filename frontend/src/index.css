@@ -19,11 +19,12 @@ body {
   height: 100%;
   margin: 0;
   background: var(--background-body);
+  color: var(--text-black);
 }
 
 #root {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 180px 1fr;
   grid-template-rows: 72px 1fr;
   grid-template-areas:
     "sidebar header"
@@ -32,17 +33,15 @@ body {
   height: 100vh;
 }
 
-main {
-  background: var(--background-white);
-}
-
 :root {
-  --background-body: #dce3e8;
+  --background-body: #0f4c81;
+  --background-layout: #f1f5f8;
 
   --background-white: #ffffff;
   --background-black: #1b1f21;
-  --background-blue: #104e78;
-  --text-black: #1b1f21;
+  --background-blue: #0f4c81;
+
+  --text-black: #363839;
 }
 
 p {

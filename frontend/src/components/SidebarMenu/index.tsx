@@ -8,7 +8,12 @@ export const SidebarMenu = ({ menuItems }: SidebarMenuProps) => {
   return (
     <ul>
       {menuItems.map((item) => (
-        <SidebarMenuItem title={item.title} icon={item.icon} />
+        <SidebarMenuItem
+          key={item.title}
+          title={item.title}
+          icon={item.icon}
+          navTo={item.navTo}
+        />
       ))}
     </ul>
   );

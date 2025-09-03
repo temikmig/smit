@@ -1,8 +1,19 @@
 /* eslint-disable react-refresh/only-export-components */
-export * from "./HomeIcon";
+
+// arrows
+export * from "./ArrowUpIcon";
+export * from "./ArrowUpMinIcon";
 export * from "./ArrowDownIcon";
+export * from "./ArrowDownMinIcon";
+export * from "./ArrowLeftIcon";
+export * from "./ArrowLeftMinIcon";
+export * from "./ArrowRightIcon";
+export * from "./ArrowRightMinIcon";
+
+export * from "./HomeIcon";
 export * from "./CharIcon";
 export * from "./ToDoIcon";
 export * from "./BoxIcon";
 export * from "./PersIcon";
 export * from "./SettingsIcon";
+export * from "./NotificationsIcon";

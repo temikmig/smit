@@ -11,11 +11,11 @@ import styles from "./Sidebar.module.css";
 
 export const Sidebar = () => {
   const menuItems = [
-    { title: "Дашборд", icon: <HomeIcon /> },
-    { title: "Склад", icon: <BoxIcon /> },
-    { title: "Отчеты", icon: <CharIcon /> },
-    { title: "Сотрудники", icon: <PersIcon /> },
-    { title: "Настройки", icon: <SettingsIcon /> },
+    { title: "Дашборд", icon: <HomeIcon />, navTo: "/dashboard" },
+    { title: "Склад", icon: <BoxIcon />, navTo: "/storage" },
+    { title: "Отчеты", icon: <CharIcon />, navTo: "/reports" },
+    { title: "Сотрудники", icon: <PersIcon />, navTo: "/employees" },
+    { title: "Настройки", icon: <SettingsIcon />, navTo: "/settings" },
   ];
 
   return (
