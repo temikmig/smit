@@ -5,6 +5,7 @@
 
 .layoutBox {
   background: var(--background-layout);
+  box-shadow: -1px 0px 9px 0px var(--background-shadowblue);
   border-radius: 32px;
   height: 100%;
 }
