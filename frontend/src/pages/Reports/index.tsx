@@ -1,3 +1,9 @@
+import { DevelopMessage } from "../../components/DevelopMessage";
+
 export const Reports = () => {
-  return <div>отчеты</div>;
+  return (
+    <div>
+      <DevelopMessage />
+    </div>
+  );
 };

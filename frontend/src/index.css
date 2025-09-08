@@ -40,9 +40,17 @@ body {
   --background-white: #ffffff;
   --background-black: #1b1f21;
   --background-blue: #0f4c81;
-  --background-shadowblue: #0a4273;
+  --background-red: #f56767;
+  --background-blue10: #e8edf3;
+
+  --background-shadow-blue: #0a4273;
 
   --text-black: #363839;
+  --text-gray: #a9b0b7;
+
+  --icons-black: #323435;
+  --icons-red: #f56767;
+  --icons-blue: #0f4c81;
 }
 
 p {

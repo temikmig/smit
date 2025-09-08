@@ -1,3 +1,9 @@
+import { DevelopMessage } from "../../components/DevelopMessage";
+
 export const Dashboard = () => {
-  return <div>дашик</div>;
+  return (
+    <div>
+      <DevelopMessage />
+    </div>
+  );
 };

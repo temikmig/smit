@@ -8,7 +8,6 @@
 .profileName {
   display: flex;
   flex-direction: column;
-  text-align: right;
 }
 
 .profileName h2 {

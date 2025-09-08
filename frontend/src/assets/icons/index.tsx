@@ -17,3 +17,9 @@ export * from "./BoxIcon";
 export * from "./PersIcon";
 export * from "./SettingsIcon";
 export * from "./NotificationsIcon";
+
+export * from "./OptionsDotsVerticalIcon";
+export * from "./OptionsDotsHorizontalIcon";
+
+export * from "./EditIcon";
+export * from "./DeleteIcon";

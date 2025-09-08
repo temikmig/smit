@@ -1,3 +1,9 @@
+import { DevelopMessage } from "../../components/DevelopMessage";
+
 export const Employees = () => {
-  return <div>Сотрудники</div>;
+  return (
+    <div>
+      <DevelopMessage />
+    </div>
+  );
 };

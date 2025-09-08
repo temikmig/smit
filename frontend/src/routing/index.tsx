@@ -1,4 +1,8 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import {
+  createBrowserRouter,
+  // createHashRouter,
+  Navigate,
+} from "react-router-dom";
 import { RootLayout } from "./layouts/RootLayout";
 import { Dashboard } from "../pages/Dashboard";
 import { Layout } from "./layouts/Layout";
@@ -9,6 +13,7 @@ import { settingsRoutes } from "./settingsRoutes";
 import { employeesRoutes } from "./employeesRoutes";
 
 export const router = createBrowserRouter(
+  // export const router = createHashRouter(
   [
     {
       path: "/",

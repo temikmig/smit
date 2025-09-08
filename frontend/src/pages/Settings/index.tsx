@@ -1,3 +1,9 @@
+import { DevelopMessage } from "../../components/DevelopMessage";
+
 export const Settings = () => {
-  return <div>настройки</div>;
+  return (
+    <div>
+      <DevelopMessage />
+    </div>
+  );
 };

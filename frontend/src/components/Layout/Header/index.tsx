@@ -1,8 +1,9 @@
 import { useLocation, useMatches, useNavigate } from "react-router-dom";
 import { ArrowLeftIcon } from "../../../assets/icons";
-import { HeaderSearch } from "../../HeaderSearch";
 import { ProfileAvatar } from "../../ProfileAvatar";
 import styles from "./Header.module.css";
+import { Notifications } from "../../Notifications";
+import { HeaderSearch } from "../../HeaderSearch";
 
 type RouteHandle = {
   title?: string;
@@ -45,6 +46,7 @@ export const Header = () => {
       </div>
       <div className={styles.profileCont}>
         <HeaderSearch />
+        <Notifications />
         <ProfileAvatar />
       </div>
     </header>
