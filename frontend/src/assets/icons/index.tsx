@@ -23,3 +23,5 @@ export * from "./OptionsDotsHorizontalIcon";
 
 export * from "./EditIcon";
 export * from "./DeleteIcon";
+export * from "./FilterIcon";
+export * from "./SortIcon";

@@ -7,7 +7,7 @@ import { RootLayout } from "./layouts/RootLayout";
 import { Dashboard } from "../pages/Dashboard";
 import { Layout } from "./layouts/Layout";
 import ProtectedRoutes from "../common/ProtectedRoute";
-import { storageRoutes } from "./storageRoutes";
+import { storagesRoutes } from "./storagesRoutes";
 import { reportsRoutes } from "./reportsRoutes";
 import { settingsRoutes } from "./settingsRoutes";
 import { employeesRoutes } from "./employeesRoutes";
@@ -32,10 +32,10 @@ export const router = createBrowserRouter(
               handle: { title: "Дашборд" },
             },
             {
-              path: "storage/*",
+              path: "storages/*",
               element: <ProtectedRoutes type="admin" whithOutlet />,
-              children: storageRoutes,
-              handle: { title: "Склад" },
+              children: storagesRoutes,
+              handle: { title: "Склады" },
             },
             {
               path: "reports/*",

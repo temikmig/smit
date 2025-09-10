@@ -1,48 +1,49 @@
-import { useLocation, useMatches, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useMatches } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getHeaderTitle } from "../../../store/uiSlice";
 import { ArrowLeftIcon } from "../../../assets/icons";
 import { ProfileAvatar } from "../../ProfileAvatar";
-import styles from "./Header.module.css";
 import { Notifications } from "../../Notifications";
 import { HeaderSearch } from "../../HeaderSearch";
-
-type RouteHandle = {
-  title?: string;
-};
+import styles from "./Header.module.css";
+import type { RouteHandle } from "../../../components/types/routes";
 
 export const Header = () => {
   const matches = useMatches();
+  const reduxTitle = useSelector(getHeaderTitle);
   const navigate = useNavigate();
-  const location = useLocation();
+  const { pathname } = useLocation();
 
-  const { pathname } = location;
+  const dynamicMatch = [...matches]
+    .reverse()
+    .find((m) => (m.handle as RouteHandle)?.dynamicTitle);
 
-  const currentTitle = matches.find((m) => (m.handle as RouteHandle)?.title)
-    ?.handle as RouteHandle;
+  const staticMatch = [...matches]
+    .reverse()
+    .find((m) => typeof (m.handle as RouteHandle)?.title === "string");
+
+  const headerTitle = dynamicMatch
+    ? reduxTitle
+    : staticMatch
+    ? (staticMatch.handle as RouteHandle).title
+    : "Дашборд";
 
   const handleBack = () => {
     if (pathname === "/dashboard") return;
-
     const parts = pathname.split("/").filter(Boolean);
     parts.pop();
-
-    if (parts.length === 0) {
-      navigate("/dashboard");
-    } else {
-      navigate("/" + parts.join("/"));
-    }
+    navigate(parts.length === 0 ? "/dashboard" : "/" + parts.join("/"));
   };
-
-  const showBack = pathname !== "/dashboard";
 
   return (
     <header className={styles.header}>
       <div className={styles.titleCont}>
-        {showBack && (
+        {pathname !== "/dashboard" && (
           <div className={styles.backArrowCont}>
             <ArrowLeftIcon onClick={handleBack} className={styles.backArrow} />
           </div>
         )}
-        <h3>{currentTitle?.title ?? "Дашборд"}</h3>
+        <h3>{headerTitle}</h3>
       </div>
       <div className={styles.profileCont}>
         <HeaderSearch />

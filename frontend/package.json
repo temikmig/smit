@@ -13,7 +13,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.8.2",
+    "@reduxjs/toolkit": "^2.9.0",
     "clsx": "^2.1.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

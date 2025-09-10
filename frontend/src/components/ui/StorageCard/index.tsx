@@ -1,16 +1,24 @@
+import { useNavigate } from "react-router-dom";
 import { getColorIndex } from "../../../common/functions";
 import styles from "./StorageCard.module.css";
 import { StorageCardOptions } from "./StorageCardOptions";
 
 interface StorageCardProps {
+  id: string;
   index: number;
   title: string;
   image?: string;
 }
 
-export const StorageCard = ({ index, title, image }: StorageCardProps) => {
+export const StorageCard = ({ id, index, title, image }: StorageCardProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`${id}`);
+  };
+
   return (
-    <div className={styles.cardCont}>
+    <div className={styles.cardCont} onClick={handleClick}>
       <div
         className={styles.cardImage}
         style={{ backgroundColor: getColorIndex(index) }}

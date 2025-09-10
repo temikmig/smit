@@ -69,7 +69,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
     }
 
     if (anchorRect.left + menuRect.width > window.innerWidth) {
-      left = window.innerWidth - menuRect.width - 10;
+      left = window.innerWidth - menuRect.width - 21;
     }
 
     if (left < 10) left = 10;

@@ -9,7 +9,7 @@ export const ProfileAvatar = () => {
       </div>
       <div className={styles.profileName}>
         <h2>Тёма</h2>
-        <p className="text_small">Администратор</p>
+        <p className="text_small">Суперадмин</p>
       </div>
     </div>
   );

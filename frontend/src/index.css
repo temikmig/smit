@@ -46,11 +46,27 @@ body {
   --background-shadow-blue: #0a4273;
 
   --text-black: #363839;
+  --text-black60: #36383999;
+  --text-white: #ffffff;
+  --text-white60: #ffffff99;
+  --text-blackgray: #686b6c;
   --text-gray: #a9b0b7;
 
   --icons-black: #323435;
+  --icons-white: #ffffff;
   --icons-red: #f56767;
   --icons-blue: #0f4c81;
+
+  --button-primary: #4e7ea8;
+  --button-primary-hover: #6091bb;
+  --button-primary-disabled: #b2c6d9;
+  --button-secondary: #6c757d;
+  --button-secondary-hover: #5a6268;
+  --button-secondary-disabled: #b8bdc4;
+  --button-outline-hover: #dee2e5;
+  --button-outline-disabled: #eaeaea;
+
+  --border-focused: var(--button-primary);
 }
 
 p {
