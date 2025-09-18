@@ -3,8 +3,9 @@ import styles from "./Button.module.css";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "primary" | "secondary" | "outline";
-  size?: "small" | "medium" | "large";
+  size?: "small" | "medium" | "big";
   icon?: ReactNode;
+  children: string;
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -18,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   let buttonClass = styles.button;
 
   if (variant) buttonClass += ` ${styles[variant]}`;
-  if (size && size !== "medium") buttonClass += ` ${styles[size]}`;
+  if (size) buttonClass += ` ${styles[size]}`;
   if (className) buttonClass += ` ${className}`;
 
   return (

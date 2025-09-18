@@ -25,7 +25,7 @@ export const HeaderSearch = ({
     setIsSearchOpen(true);
     setTimeout(() => {
       inputRef.current?.focus();
-    }, 300);
+    }, 50);
   };
 
   useEffect(() => {

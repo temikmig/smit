@@ -23,7 +23,7 @@ export const Search = ({ placeholder = "Поиск..." }: SearchProps) => {
     setIsSearchOpen(true);
     setTimeout(() => {
       inputRef.current?.focus();
-    }, 300);
+    }, 50);
   };
 
   useEffect(() => {

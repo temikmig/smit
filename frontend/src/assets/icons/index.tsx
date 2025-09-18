@@ -25,3 +25,7 @@ export * from "./EditIcon";
 export * from "./DeleteIcon";
 export * from "./FilterIcon";
 export * from "./SortIcon";
+
+export * from "./EyeIcon";
+export * from "./EyeCrossedIcon";
+export * from "./CheckIcon";

@@ -3,8 +3,6 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
-  height: 32px;
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
@@ -63,13 +61,18 @@
 }
 
 .small {
-  height: 24px;
+  height: 28px;
   font-size: 12px;
 }
 
 .medium {
-  height: 28px;
+  height: 32px;
   font-size: 14px;
+}
+
+.big {
+  height: 40px;
+  font-size: 16px;
 }
 
 .icon {
@@ -81,4 +84,14 @@
 .icon svg {
   width: 16px;
   height: 16px;
+}
+
+.big .icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.small .icon svg {
+  width: 14px;
+  height: 14px;
 }

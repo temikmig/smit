@@ -29,12 +29,18 @@ export const StorageCardOptions = () => {
     },
   ];
 
+  const handleOptions = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    setIsOptionsOpen((prev) => !prev);
+  };
+
   return (
     <div>
       <button
         ref={buttonRef}
         className={styles.cardOptions}
-        onClick={() => setIsOptionsOpen((prev) => !prev)}
+        onClick={handleOptions}
       >
         <OptionsDotsHorizontalIcon />
       </button>

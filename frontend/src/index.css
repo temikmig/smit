@@ -51,9 +51,12 @@ body {
   --text-white60: #ffffff99;
   --text-blackgray: #686b6c;
   --text-gray: #a9b0b7;
+  --text-red: #f56767;
 
-  --icons-black: #323435;
+  --icons-black: #363839;
   --icons-white: #ffffff;
+  --icons-blackgray: #686b6c;
+  --icons-gray: #a9b0b7;
   --icons-red: #f56767;
   --icons-blue: #0f4c81;
 
@@ -66,7 +69,10 @@ body {
   --button-outline-hover: #dee2e5;
   --button-outline-disabled: #eaeaea;
 
-  --border-focused: var(--button-primary);
+  --border-gray: #b8bdc4;
+  --border-blackgray: #686b6c;
+  --border-red: #f56767;
+  --border-blue: #0f4c81;
 }
 
 p {
@@ -109,21 +115,25 @@ h5 {
 }
 
 .text_medium_bold {
+  line-height: 12px;
   font-size: 14px;
   font-weight: 600;
 }
 
 .text_medium {
+  line-height: 20px;
   font-size: 14px;
   font-weight: 400;
 }
 
 .text_small_bold {
+  line-height: 16px;
   font-size: 12px;
   font-weight: 600;
 }
 
 .text_small {
+  line-height: 16px;
   font-size: 12px;
   font-weight: 400;
 }
