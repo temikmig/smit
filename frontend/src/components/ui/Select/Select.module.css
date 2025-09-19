@@ -68,7 +68,13 @@
   transform: rotate(180deg);
 }
 
-.dropdownItem {
+.selectCont {
+  background: var(--background-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.2);
+}
+
+.selectItem {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -76,9 +82,14 @@
   cursor: pointer;
   white-space: nowrap;
   transition: background 0.2s;
+  border-bottom: 1px var(--border-whitegray) solid;
 }
 
-.dropdownItem:hover {
+.selectItem:last-child {
+  border-bottom: none;
+}
+
+.selectItem:hover {
   background: var(--background-blue10);
 }
 

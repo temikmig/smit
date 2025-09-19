@@ -8,7 +8,7 @@ export const ProfileAvatar = () => {
         <img src={defaultAvatar} alt="user_avatar" />
       </div>
       <div className={styles.profileName}>
-        <h2>Тёма</h2>
+        <p className="text_medium_bold">Тёма</p>
         <p className="text_small">Суперадмин</p>
       </div>
     </div>

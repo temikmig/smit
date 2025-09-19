@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Outlet } from "react-router-dom";
 import { Loader } from "../../components/ui/Loader";
+import { ModalProvider } from "../../common/contexts/ModalProvider";
 
 const LoadingScreen = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +22,9 @@ const LoadingScreen = ({ children }: { children: ReactNode }) => {
 export const RootLayout = () => (
   <>
     <LoadingScreen>
-      <Outlet />
+      <ModalProvider>
+        <Outlet />
+      </ModalProvider>
     </LoadingScreen>
   </>
 );

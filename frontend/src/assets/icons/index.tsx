@@ -29,3 +29,8 @@ export * from "./SortIcon";
 export * from "./EyeIcon";
 export * from "./EyeCrossedIcon";
 export * from "./CheckIcon";
+
+export * from "./InfoIcon";
+export * from "./CrossCircleIcon";
+export * from "./SuccessIcon";
+export * from "./AttentionIcon";

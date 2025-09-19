@@ -1,15 +1,16 @@
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 import Button from "../../components/ui/Button";
 import { SearchIcon } from "../../assets/icons/SearchIcon";
 import Input from "../../components/ui/Input";
 import { Checkbox } from "../../components/ui/Checkbox";
 import { Radio } from "../../components/ui/Radio";
-import { HomeIcon } from "../../assets/icons";
+import { HomeIcon, InfoIcon } from "../../assets/icons";
 import { Select } from "../../components/ui/Select";
 import { MultiSelect } from "../../components/ui/MultiSelect";
-// import Select from "../../components/ui/Select";
-// import MultiSelect from "../../components/ui/MultiSelect";
-// import { HomeIcon } from "../../assets/icons";
+import { Tooltip } from "../../components/ui/Tooltip";
+import { Alert } from "../../components/ui/Alert";
+import Toggle from "../../components/ui/Toggle";
+import { useModal } from "../../common/hooks/useModal";
 
 const UiBlock = ({
   title,
@@ -37,6 +38,7 @@ const UiBlock = ({
 };
 
 export const Settings = () => {
+  const { openModal } = useModal();
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <UiBlock title="Кнопки Big">
@@ -194,6 +196,86 @@ export const Settings = () => {
           ]}
           disabled
         />
+      </UiBlock>
+      <UiBlock title="Переключатель" column>
+        <Toggle label="Переключатель" />
+        <Toggle label="Переключатель мини" mode="small" />
+        <Toggle label="Переключатель disabled" disabled />
+      </UiBlock>
+      <UiBlock title="Тултип" column>
+        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+          <p className="text_medium">Текст с подсказкой сверху</p>
+          <Tooltip
+            text="Подсказка сверху"
+            placement="top center"
+            offsetY={4}
+            withArrow
+          >
+            <InfoIcon width="16" height="16px" />
+          </Tooltip>
+        </div>
+        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+          <p className="text_medium">Текст с подсказкой снизу</p>
+          <Tooltip
+            text="Подсказка снизу"
+            placement="bottom center"
+            offsetY={4}
+            withArrow
+          >
+            <InfoIcon width="16" height="16px" />
+          </Tooltip>
+        </div>
+        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+          <p className="text_medium">Текст с подсказкой слева</p>
+          <Tooltip
+            text="Подсказка слева"
+            placement="left center"
+            offsetX={4}
+            withArrow
+          >
+            <InfoIcon width="16" height="16px" />
+          </Tooltip>
+        </div>
+        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+          <p className="text_medium">Текст с подсказкой справа</p>
+          <Tooltip
+            text="Подсказка справа"
+            placement="right center"
+            offsetX={4}
+            withArrow
+          >
+            <InfoIcon width="16" height="16px" />
+          </Tooltip>
+        </div>
+      </UiBlock>
+      <UiBlock title="Алерты" column>
+        <Alert
+          title="Заголовок сообщения - успех"
+          description="Длинное сообщение о чем-то и еще о чем-то очень важном"
+          mode="success"
+        />
+        <Alert
+          title="Заголовок сообщения - ошибка"
+          description="Длинное сообщение о чем-то и еще о чем-то очень важном"
+          mode="error"
+        />
+        <Alert
+          title="Заголовок сообщения - внимание"
+          description="Длинное сообщение о чем-то и еще о чем-то очень важном"
+          mode="attention"
+        />
+      </UiBlock>
+      <UiBlock title="Модалка" column>
+        <Button
+          onClick={() =>
+            openModal({
+              title: "Привет 👋",
+              content: <p>Это простая модалка с кнопкой закрытия</p>,
+            })
+          }
+        >
+          Открыть модалку
+        </Button>
       </UiBlock>
     </div>
   );

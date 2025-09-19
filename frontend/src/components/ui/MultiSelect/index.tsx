@@ -90,26 +90,30 @@ export const MultiSelect: FC<MultiSelectProps> = ({
         open={open}
         onClose={() => setOpen(false)}
         fullWidth
+        withShadow
+        offsetY={8}
       >
-        {options.map((opt) => (
-          <div
-            key={opt.value}
-            className={clsx(styles.dropdownItem, {
-              [styles.blue]: opt.color === "blue",
-              [styles.red]: opt.color === "red",
-            })}
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleOption(opt.value);
-            }}
-          >
-            {opt.icon && <span className={styles.icon}>{opt.icon}</span>}
-            <span>{opt.label}</span>
-            {selected.includes(opt.value) && (
-              <CheckIcon className={styles.checkIcon} />
-            )}
-          </div>
-        ))}
+        <div className={styles.selectCont}>
+          {options.map((opt) => (
+            <div
+              key={opt.value}
+              className={clsx(styles.selectItem, {
+                [styles.blue]: opt.color === "blue",
+                [styles.red]: opt.color === "red",
+              })}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleOption(opt.value);
+              }}
+            >
+              {opt.icon && <span className={styles.icon}>{opt.icon}</span>}
+              <span>{opt.label}</span>
+              {selected.includes(opt.value) && (
+                <CheckIcon className={styles.checkIcon} />
+              )}
+            </div>
+          ))}
+        </div>
       </Dropdown>
 
       {error && errorMessage ? (

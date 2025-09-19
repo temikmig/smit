@@ -38,9 +38,35 @@ body {
   --background-layout: #f1f5f8;
 
   --background-white: #ffffff;
-  --background-black: #1b1f21;
+  --background-gray: #a9b0b7;
+  --background-whitegray: #e5ebf1;
+  --background-blackgray: #686b6c;
+
+  --background-black: #363839;
+  --background-black90: #363839e6;
+  --background-black60: #36383999;
+  --background-black30: #3638394d;
+
   --background-blue: #0f4c81;
+  --background-blue90: #0f4c81e6;
+  --background-blue60: #0f4c8199;
+  --background-blue30: #0f4c814d;
+
   --background-red: #f56767;
+  --background-red90: #f56767e6;
+  --background-red60: #f5676799;
+  --background-red30: #f567674d;
+
+  --background-green: #69e16d;
+  --background-green90: #69e16de6;
+  --background-green60: #69e16d99;
+  --background-green30: #69e16d4d;
+
+  --background-orange: #e39d6e;
+  --background-orange90: #e39d6ee6;
+  --background-orange60: #e39d6e99;
+  --background-orange30: #e39d6e4d;
+
   --background-blue10: #e8edf3;
 
   --background-shadow-blue: #0a4273;
@@ -57,8 +83,10 @@ body {
   --icons-white: #ffffff;
   --icons-blackgray: #686b6c;
   --icons-gray: #a9b0b7;
-  --icons-red: #f56767;
+  --icons-red: #b02b2b;
   --icons-blue: #0f4c81;
+  --icons-green: #428c45;
+  --icons-orange: #c55611;
 
   --button-primary: #4e7ea8;
   --button-primary-hover: #6091bb;
@@ -70,8 +98,9 @@ body {
   --button-outline-disabled: #eaeaea;
 
   --border-gray: #b8bdc4;
+  --border-whitegray: #e5ebf1;
   --border-blackgray: #686b6c;
-  --border-red: #f56767;
+  --border-red: #b02b2b;
   --border-blue: #0f4c81;
 }
 
@@ -82,58 +111,69 @@ p {
 h1 {
   font-size: 36px;
   font-weight: 600;
+  line-height: 50px;
 }
 
 h2 {
   font-size: 32px;
   font-weight: 600;
+  line-height: 45px;
 }
 
 h3 {
   font-size: 24px;
   font-weight: 500;
+  line-height: 34px;
 }
 
 h4 {
   font-size: 20px;
   font-weight: 500;
+  line-height: 28px;
 }
 
 h5 {
   font-size: 18px;
   font-weight: 500;
+  line-height: 25px;
 }
 
 .text_big_bold {
   font-size: 16px;
   font-weight: 700;
+  line-height: 22px;
 }
 
 .text_big {
   font-size: 16px;
   font-weight: 400;
+  line-height: 22px;
 }
 
 .text_medium_bold {
-  line-height: 12px;
   font-size: 14px;
   font-weight: 600;
+  line-height: 20px;
 }
 
 .text_medium {
-  line-height: 20px;
   font-size: 14px;
   font-weight: 400;
+  line-height: 20px;
 }
 
 .text_small_bold {
-  line-height: 16px;
   font-size: 12px;
   font-weight: 600;
+  line-height: 16px;
 }
 
 .text_small {
-  line-height: 16px;
   font-size: 12px;
   font-weight: 400;
+  line-height: 16px;
+}
+
+.shadow-container {
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
 }

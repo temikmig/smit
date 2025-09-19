@@ -1,9 +1,20 @@
+.overlayCont {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: 0.25s;
+}
+.overlayCont.show {
+  opacity: 1;
+}
+
 .dropdownCont {
-  background: var(--background-white);
-  border-radius: 8px;
-  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.2);
   padding: 0;
-  min-width: 160px;
 }
 
 .dropdownWrapper {
