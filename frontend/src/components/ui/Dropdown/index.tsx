@@ -34,7 +34,10 @@ interface DropdownProps {
   placement?: Placement;
   withShadow?: boolean;
   className?: string;
+  modal?: boolean;
   overlay?: boolean;
+  overlayClose?: boolean;
+  mode?: "fixed" | "absolute" | "relative";
 }
 
 export const Dropdown = ({
@@ -49,6 +52,9 @@ export const Dropdown = ({
   withShadow = false,
   className,
   overlay = false,
+  modal = false,
+  overlayClose = true,
+  mode = "fixed",
 }: DropdownProps) => {
   const [isMounted, setIsMounted] = useState(false);
   const [currentPlacement, setCurrentPlacement] =
@@ -56,20 +62,40 @@ export const Dropdown = ({
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>(0);
+  const overlayRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!overlay || !overlayRef.current) return;
+
+    if (open) {
+      setIsMounted(true);
+
+      requestAnimationFrame(() => {
+        if (overlayRef.current) {
+          overlayRef.current.style.opacity = "1";
+        }
+      });
+    } else if (isMounted) {
+      if (overlayRef.current) {
+        overlayRef.current.style.opacity = "0";
+      }
+      const timeout = setTimeout(() => setIsMounted(false), 250);
+      return () => clearTimeout(timeout);
+    }
+  }, [open, overlay, isMounted]);
 
   useEffect(() => {
     if (open) {
       setIsMounted(true);
 
-      // Ждём, пока элемент отрендерится
       const frame = requestAnimationFrame(() => {
-        updatePosition(); // вычисляем top/left
+        updatePosition();
 
         if (dropdownRef.current) {
           dropdownRef.current.style.transition =
             "opacity 0.25s ease, transform 0.25s ease";
           dropdownRef.current.style.opacity = "1";
-          dropdownRef.current.style.transform = "translate(0,0)";
+          dropdownRef.current.style.transform = !modal ? "translate(0,0)" : "";
         }
       });
 
@@ -212,9 +238,8 @@ export const Dropdown = ({
         !dropdownRef.current.contains(e.target as Node) &&
         anchorRef.current &&
         !anchorRef.current.contains(e.target as Node)
-      ) {
+      )
         onClose();
-      }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
@@ -239,19 +264,24 @@ export const Dropdown = ({
       ref={dropdownRef}
       className={clsx(styles.dropdownCont, withShadow && "shadow-container")}
       style={{
-        position: "fixed",
+        position: mode,
         zIndex: 1000,
         opacity: 0,
         transform: initialTransform,
       }}
+      onClick={(e) => e.stopPropagation()}
     >
       <div className={clsx(styles.dropdownWrapper, className)}>{children}</div>
     </div>
   );
 
-  if (overlay)
+  if (overlay && isMounted)
     return (
-      <div className={clsx(styles.overlayCont, open && styles.show)}>
+      <div
+        className={clsx(styles.overlayCont)}
+        ref={overlayRef}
+        onClick={() => overlayClose && onClose()}
+      >
         {content}
       </div>
     );

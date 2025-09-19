@@ -34,3 +34,6 @@ export * from "./InfoIcon";
 export * from "./CrossCircleIcon";
 export * from "./SuccessIcon";
 export * from "./AttentionIcon";
+
+export * from "./CrossIcon";
+export * from "./CrossSmallIcon";

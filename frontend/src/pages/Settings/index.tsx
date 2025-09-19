@@ -11,6 +11,7 @@ import { Tooltip } from "../../components/ui/Tooltip";
 import { Alert } from "../../components/ui/Alert";
 import Toggle from "../../components/ui/Toggle";
 import { useModal } from "../../common/hooks/useModal";
+import { useSnackbar } from "../../common/hooks/useSnackBar";
 
 const UiBlock = ({
   title,
@@ -39,6 +40,7 @@ const UiBlock = ({
 
 export const Settings = () => {
   const { openModal } = useModal();
+  const { showSnackbar } = useSnackbar();
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <UiBlock title="Кнопки Big">
@@ -265,16 +267,99 @@ export const Settings = () => {
           mode="attention"
         />
       </UiBlock>
-      <UiBlock title="Модалка" column>
+      <UiBlock title="Модалка">
         <Button
           onClick={() =>
             openModal({
-              title: "Привет 👋",
-              content: <p>Это простая модалка с кнопкой закрытия</p>,
+              title: "Заголовок окна",
+              content: (
+                <div
+                  style={{ display: "flex", flexDirection: "column", gap: 8 }}
+                >
+                  <Alert
+                    title="Заголовок сообщения - успех"
+                    description="Длинное сообщение о чем-то и еще о чем-то очень важном"
+                    mode="success"
+                  />
+                  <div
+                    style={{ display: "flex", gap: 8, alignItems: "center" }}
+                  >
+                    <Toggle label="Переключатель" />
+
+                    <Tooltip
+                      text="Подсказка справа"
+                      placement="right center"
+                      offsetX={4}
+                      withArrow
+                    >
+                      <InfoIcon width="16" height="16px" />
+                    </Tooltip>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 8,
+                      justifyContent: "flex-end",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Button size="big" variant="secondary">
+                      Отклонить
+                    </Button>
+                    <Button size="big">Подтвердить</Button>
+                  </div>
+                </div>
+              ),
             })
           }
         >
           Открыть модалку
+        </Button>
+      </UiBlock>
+      <UiBlock title="Модалка">
+        <Button
+          onClick={() =>
+            showSnackbar({
+              title: "Заголовок сообщения",
+              message: "Само сообщение",
+              mode: "info",
+            })
+          }
+        >
+          Показать снакбар info
+        </Button>
+        <Button
+          onClick={() =>
+            showSnackbar({
+              title: "Заголовок сообщения",
+              message: "Само сообщение",
+              mode: "success",
+            })
+          }
+        >
+          Показать снакбар success
+        </Button>
+        <Button
+          onClick={() =>
+            showSnackbar({
+              title: "Заголовок сообщения",
+              message: "Само сообщение",
+              mode: "attention",
+            })
+          }
+        >
+          Показать снакбар attention
+        </Button>
+        <Button
+          onClick={() =>
+            showSnackbar({
+              title: "Заголовок сообщения",
+              message: "Само сообщение",
+              mode: "error",
+            })
+          }
+        >
+          Показать снакбар error
         </Button>
       </UiBlock>
     </div>

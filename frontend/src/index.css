@@ -177,3 +177,19 @@ h5 {
 .shadow-container {
   filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
 }
+
+.no-overflow {
+  overflow: unset !important;
+}
+
+.snackbar-container {
+  position: absolute;
+  right: 5px;
+  bottom: 21px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  max-height: calc(100vh - 26px);
+  padding: 20px 16px 20px 40px;
+}
