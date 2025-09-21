@@ -7,6 +7,12 @@ export type ModalData = {
   overlayClose?: boolean;
 };
 
+export type ModalItem = {
+  id: string;
+  data: ModalData;
+  open: boolean;
+};
+
 export type ModalContextType = {
   openModal: (data: ModalData) => void;
 };

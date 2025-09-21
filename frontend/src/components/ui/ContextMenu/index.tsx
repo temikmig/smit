@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React, { type RefObject } from "react";
 import styles from "./ContextMenu.module.css";
-import { Dropdown } from "../Dropdown";
+import { Dropdown, type Placement } from "../Dropdown";
 
 export interface ContextMenuItem {
   id: string;
@@ -28,6 +28,9 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
   offsetX = 0,
   offsetY = 8,
 }) => {
+  const [currentPlacement, setCurrentPlacement] =
+    React.useState<Placement>("top end");
+
   return (
     <Dropdown
       anchorRef={anchorRef}
@@ -35,23 +38,28 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
       onClose={onClose}
       offsetX={offsetX}
       offsetY={offsetY}
+      placement={currentPlacement}
+      withShadow
+      onPlacementChange={setCurrentPlacement}
     >
-      {items.map((item) => (
-        <div
-          key={item.id}
-          className={clsx(styles.item, {
-            [styles.blue]: item.color === "blue",
-            [styles.red]: item.color === "red",
-          })}
-          onClick={() => {
-            item.onClick();
-            onClose();
-          }}
-        >
-          {item.icon && <span className={styles.icon}>{item.icon}</span>}
-          <span>{item.label}</span>
-        </div>
-      ))}
+      <div className={styles.contextMenuCont}>
+        {items.map((item) => (
+          <div
+            key={item.id}
+            className={clsx(styles.contextMenuItem, {
+              [styles.blue]: item.color === "blue",
+              [styles.red]: item.color === "red",
+            })}
+            onClick={() => {
+              item.onClick();
+              onClose();
+            }}
+          >
+            {item.icon && <span className={styles.icon}>{item.icon}</span>}
+            <span>{item.label}</span>
+          </div>
+        ))}
+      </div>
     </Dropdown>
   );
 };

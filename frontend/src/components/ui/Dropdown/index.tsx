@@ -32,6 +32,7 @@ interface DropdownProps {
   offsetY?: number;
   fullWidth?: boolean;
   placement?: Placement;
+  onPlacementChange?: (placement: Placement) => void;
   withShadow?: boolean;
   className?: string;
   modal?: boolean;
@@ -49,6 +50,7 @@ export const Dropdown = ({
   offsetY = 0,
   fullWidth = false,
   placement = "bottom start",
+  onPlacementChange,
   withShadow = false,
   className,
   overlay = false,
@@ -213,7 +215,10 @@ export const Dropdown = ({
 
     if (fullWidth) dropdown.style.width = `${anchorRect.width}px`;
 
+    const newPlacement = `${newDirection} ${align}` as Placement;
+
     setCurrentPlacement(`${newDirection} ${align}` as Placement);
+    onPlacementChange?.(newPlacement);
   };
 
   useEffect(() => {

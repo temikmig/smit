@@ -1,15 +1,8 @@
-import React, { useState, useRef, type ReactNode } from "react";
-
-import { type ModalData } from "./types";
+import { useState, useRef, type ReactNode } from "react";
+import { type ModalData, type ModalItem } from "./types";
 import { ModalContext } from "./ModalContext";
 import { Dropdown } from "../../../components/ui/Dropdown";
 import { Modal } from "../../../components/ui/Modal";
-
-type ModalItem = {
-  id: string;
-  data: ModalData;
-  open: boolean;
-};
 
 interface ModalProviderProps {
   children: ReactNode;

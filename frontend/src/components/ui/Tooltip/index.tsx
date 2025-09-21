@@ -21,16 +21,18 @@ export const Tooltip = ({
   offsetY = 0,
   withArrow,
 }: TooltipProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const anchorRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const [currentPlacement, setCurrentPlacement] =
+    useState<Placement>(placement);
 
-  const [direction] = placement.split(" ") as [
+  const [direction] = currentPlacement.split(" ") as [
     "top" | "bottom" | "left" | "right",
     "start" | "center" | "end"
   ];
 
-  const [open, setOpen] = useState(false);
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const anchorRef = useRef<HTMLDivElement>(null);
 
   const handleMouseEnter = () => {
     if (hideTimer.current) clearTimeout(hideTimer.current);
@@ -59,6 +61,7 @@ export const Tooltip = ({
         placement={placement}
         offsetX={offsetX}
         offsetY={offsetY}
+        onPlacementChange={setCurrentPlacement}
       >
         <div
           className={clsx(styles.tooltip, withArrow && styles.withArrow)}

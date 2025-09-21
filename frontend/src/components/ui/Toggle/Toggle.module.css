@@ -38,6 +38,7 @@
 
 .toggleCont.disabled {
   opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .toggleCont.disabled .toggle {

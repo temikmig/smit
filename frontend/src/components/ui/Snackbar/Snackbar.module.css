@@ -10,20 +10,47 @@
   border-left: 10px var(--background-gray) solid;
 }
 
+.snackbarHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.snackbarHead svg {
+  width: 16px;
+  height: 16px;
+}
+
 .snackbarCont.success {
   border-color: var(--background-green60);
+}
+
+.snackbarCont.success .snackbarHead svg {
+  color: var(--background-green);
 }
 
 .snackbarCont.error {
   border-color: var(--background-red60);
 }
 
+.snackbarCont.error .snackbarHead svg {
+  color: var(--background-red);
+}
+
 .snackbarCont.attention {
   border-color: var(--background-orange60);
 }
 
+.snackbarCont.attention .snackbarHead svg {
+  color: var(--background-orange);
+}
+
 .snackbarCont.info {
   border-color: var(--background-gray);
+}
+
+.snackbarCont.info .snackbarHead svg {
+  color: var(--background-gray);
 }
 
 .closeSnackbar {
