@@ -7,8 +7,12 @@ export * from "./ArrowDownIcon";
 export * from "./ArrowDownMinIcon";
 export * from "./ArrowLeftIcon";
 export * from "./ArrowLeftMinIcon";
+export * from "./DoubleArrowLeftIcon";
+export * from "./DoubleArrowLeftMinIcon";
 export * from "./ArrowRightIcon";
 export * from "./ArrowRightMinIcon";
+export * from "./DoubleArrowRightIcon";
+export * from "./DoubleArrowRightMinIcon";
 
 export * from "./HomeIcon";
 export * from "./CharIcon";

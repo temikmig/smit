@@ -1,69 +1,56 @@
-import { useState, useRef, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { SnackbarContext } from "./SnackbarContext";
-import { Dropdown } from "../../../components/ui/Dropdown";
-import type { SnackbarData } from "./types";
 import { Snackbar } from "../../../components/ui/Snackbar";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
+import type { SnackbarData } from "./types";
 
 interface QueueItem extends SnackbarData {
   id: number;
-  open: boolean;
 }
 
 export const SnackbarProvider = ({ children }: { children: ReactNode }) => {
   const [queue, setQueue] = useState<QueueItem[]>([]);
-  const anchorRef = useRef<HTMLDivElement>(null);
   const idRef = useRef(0);
-
-  const hideSnackbar = (id: number) => {
-    setQueue((prev) =>
-      prev.map((snackbar) =>
-        snackbar.id === id ? { ...snackbar, open: false } : snackbar
-      )
-    );
-
-    setTimeout(() => {
-      setQueue((prev) => prev.filter((snackbar) => snackbar.id !== id));
-    }, 250);
-  };
 
   const showSnackbar = (options: SnackbarData) => {
     const id = ++idRef.current;
-    const newItem: QueueItem = { ...options, id, open: true };
+    const newItem: QueueItem = { ...options, id };
     setQueue((prev) => [newItem, ...prev]);
 
     const duration = options.duration ?? 30000;
+    setTimeout(() => hideSnackbar(id), duration);
+  };
 
-    setTimeout(() => {
-      hideSnackbar(id);
-    }, duration + 250);
+  const hideSnackbar = (id: number) => {
+    setQueue((prev) => prev.filter((item) => item.id !== id));
   };
 
   return (
     <SnackbarContext.Provider value={{ showSnackbar }}>
       {children}
-      {queue.length > 0 && (
-        <div className="snackbar-container">
-          {queue.map((item, index) => (
-            <Dropdown
+
+      <div className="snackbar-container">
+        <AnimatePresence initial={false}>
+          {queue.map((item) => (
+            <motion.div
               key={item.id}
-              anchorRef={anchorRef}
-              open={item.open}
-              onClose={() => {}}
-              placement="left center"
-              offsetY={index * 60}
-              mode="relative"
-              withShadow
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.25 }}
+              layout
             >
               <Snackbar
-                onClose={() => hideSnackbar(item.id)}
-                mode={item.mode}
                 title={item.title}
                 message={item.message}
+                mode={item.mode}
+                onClose={() => hideSnackbar(item.id)}
               />
-            </Dropdown>
+            </motion.div>
           ))}
-        </div>
-      )}
+        </AnimatePresence>
+      </div>
     </SnackbarContext.Provider>
   );
 };

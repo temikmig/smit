@@ -1,3 +1,4 @@
+import { useCallback, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./StoragePage.module.css";
 import {
@@ -7,29 +8,49 @@ import {
 import LoaderPage from "../../components/ui/LoaderPage";
 import { useDynamicHeaderTitle } from "../../common/hooks/useDynamicHeaderTitle";
 import { Table, type Column } from "../../components/ui/Table";
-import { useState } from "react";
-import { Search } from "../../components/ui/Search";
 import Button from "../../components/ui/Button";
-import { FilterIcon, SortIcon } from "../../assets/icons";
+
+type ProductType = {
+  id: string;
+  name: string;
+  sku: string;
+  category: string;
+  warehouseId: string;
+  price_storage: number;
+  unit_sale: string;
+  price_writeoff: number;
+  unit_writeoff: string;
+  conversion_rate: number;
+  quantity_product: number;
+  quantity_material: number;
+};
 
 export const StoragePage = () => {
   const { id } = useParams();
 
-  const { data: storageData, isLoading } = useGetStorageByIdQuery(id!, {
-    skip: !id,
-  });
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [search, setSearch] = useState("");
+  const [sortColumn, setSortColumn] = useState<keyof ProductType | null>(null);
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc" | null>(null);
 
-  const { data: storageProductsData } = useGetStorageProductsQuery({
-    storageId: id,
-    page: 1,
-    limit: 10,
-  });
+  const { data: storageData, isLoading: isLoadingStorage } =
+    useGetStorageByIdQuery(id!, { skip: !id });
+
+  const { data: productsData, isLoading: isLoadingProducts } =
+    useGetStorageProductsQuery(
+      {
+        storageId: id!,
+        page,
+        limit,
+        search,
+      },
+      { skip: !id }
+    );
 
   useDynamicHeaderTitle(storageData?.title);
 
-  const columns: Column<
-    NonNullable<typeof storageProductsData>["data"][number]
-  >[] = [
+  const columns: Column<ProductType>[] = [
     { key: "id", title: "ID" },
     { key: "name", title: "Название" },
     { key: "sku", title: "Артикул" },
@@ -39,26 +60,30 @@ export const StoragePage = () => {
     {
       key: "price_writeoff",
       title: "Цена списания",
-      render: (value) => `${value} ₽`,
+      render: (v) => `${v} ₽`,
     },
   ];
 
-  const [query, setQuery] = useState("");
+  const handleSearchChange = useCallback((val: string) => {
+    setSearch(val);
+    setPage(1);
+  }, []);
 
-  const filtered =
-    storageProductsData?.data.filter((p) =>
-      p.name.toLowerCase().includes(query.toLowerCase())
-    ) ?? [];
+  const handlePageSizeChange = useCallback((l: number) => {
+    setLimit(l);
+    setPage(1);
+  }, []);
 
-  const controls = (
-    <>
-      <Search />
-      <Button icon={<FilterIcon />}>Фильтр</Button>
-      <Button icon={<SortIcon />}>Сортировка</Button>
-    </>
+  const handleSortChange = useCallback(
+    (col: keyof ProductType, order: "asc" | "desc") => {
+      setSortColumn(col);
+      setSortOrder(order);
+      setPage(1);
+    },
+    []
   );
 
-  if (isLoading) return <LoaderPage />;
+  if (isLoadingStorage || isLoadingProducts) return <LoaderPage />;
 
   if (!storageData) {
     return <div className={styles.storagePageCont}>Склад не найден</div>;
@@ -67,9 +92,19 @@ export const StoragePage = () => {
   return (
     <Table
       columns={columns}
-      data={filtered}
-      controls={controls}
+      data={productsData?.data ?? []}
       rowKey={(r) => r.id}
+      total={productsData?.pagination?.total ?? 0}
+      page={page}
+      pageSize={limit}
+      onPageChange={setPage}
+      onPageSizeChange={handlePageSizeChange}
+      searchValue={search}
+      onSearchChange={handleSearchChange}
+      sortColumn={sortColumn}
+      sortOrder={sortOrder}
+      onSortChange={handleSortChange}
+      rightContainer={<Button>Добавить в склад</Button>}
     />
   );
 };

@@ -22,6 +22,7 @@ interface MultiSelectProps {
   helperText?: string;
   disabled?: boolean;
   leftIcon?: React.ReactNode;
+  className?: string;
 }
 
 export const MultiSelect: FC<MultiSelectProps> = ({
@@ -34,6 +35,7 @@ export const MultiSelect: FC<MultiSelectProps> = ({
   errorMessage,
   helperText,
   disabled,
+  className,
 }) => {
   const anchorRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
@@ -56,7 +58,7 @@ export const MultiSelect: FC<MultiSelectProps> = ({
       : placeholder;
 
   return (
-    <div className={styles.container}>
+    <div className={(styles.container, className)}>
       {label && (
         <p
           className={clsx(

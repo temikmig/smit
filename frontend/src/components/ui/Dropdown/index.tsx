@@ -7,6 +7,7 @@ import {
 } from "react";
 import styles from "./Dropdown.module.css";
 import clsx from "clsx";
+import { createPortal } from "react-dom";
 
 export type Placement =
   | "top start"
@@ -290,5 +291,7 @@ export const Dropdown = ({
         {content}
       </div>
     );
-  return content;
+
+  return createPortal(content, document.body);
+  return;
 };

@@ -25,7 +25,14 @@ export const storagesApi = createApi({
         data: typeof storageProductsData;
         pagination: { page: number; limit: number; total: number };
       },
-      { storageId?: string; page: number; limit: number }
+      {
+        storageId?: string;
+        page: number;
+        limit: number;
+        search?: string;
+        sortColumn?: string;
+        sortOrder?: "asc" | "desc";
+      }
     >({
       query: () => "",
       transformResponse: (_, __, arg) => {
@@ -36,6 +43,33 @@ export const storagesApi = createApi({
           filtered = filtered.filter(
             (item) => item.warehouseId === arg.storageId
           );
+        }
+
+        // фильтр по поиску
+        if (arg.search) {
+          const s = arg.search.toLowerCase();
+          filtered = filtered.filter((item) =>
+            item.name.toLowerCase().includes(s)
+          );
+        }
+
+        // сортировка
+        if (arg.sortColumn) {
+          filtered = filtered.sort((a, b) => {
+            const valA = a[arg.sortColumn as keyof typeof a];
+            const valB = b[arg.sortColumn as keyof typeof b];
+
+            if (valA == null) return 1;
+            if (valB == null) return -1;
+
+            if (typeof valA === "number" && typeof valB === "number") {
+              return arg.sortOrder === "desc" ? valB - valA : valA - valB;
+            }
+
+            return arg.sortOrder === "desc"
+              ? String(valB).localeCompare(String(valA))
+              : String(valA).localeCompare(String(valB));
+          });
         }
 
         const start = (arg.page - 1) * arg.limit;

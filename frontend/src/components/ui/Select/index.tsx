@@ -21,6 +21,7 @@ interface SelectProps {
   errorMessage?: string;
   helperText?: string;
   disabled?: boolean;
+  className?: string;
 }
 
 export const Select: FC<SelectProps> = ({
@@ -33,13 +34,14 @@ export const Select: FC<SelectProps> = ({
   errorMessage,
   helperText,
   disabled,
+  className,
 }) => {
   const anchorRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const selectedOption = options.find((o) => o.value === value);
 
   return (
-    <div className={styles.container}>
+    <div className={clsx(styles.container, className)}>
       {label && (
         <p
           className={clsx(

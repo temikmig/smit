@@ -1,5 +1,6 @@
 .snackbarCont {
   background-color: var(--background-white);
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -56,7 +57,7 @@
 .closeSnackbar {
   position: absolute;
   top: 4px;
-  left: -32px;
+  left: -42px;
   width: 24px;
   height: 24px;
   display: flex;

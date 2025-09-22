@@ -2,28 +2,25 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./Search.module.css";
 import { SearchIcon } from "../../../assets/icons/SearchIcon";
 import clsx from "clsx";
-import { useForm } from "../../../common/hooks/useForm";
 
 interface SearchProps {
   placeholder?: string;
+  value: string;
+  onChange: (value: string) => void;
 }
 
-export const Search = ({ placeholder = "Поиск..." }: SearchProps) => {
+export const Search = ({
+  placeholder = "Поиск...",
+  value,
+  onChange,
+}: SearchProps) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const initialValues = {
-    headerSearch: "",
-  };
-
-  const { values, handleChange, handleBlur } = useForm(initialValues);
-
   const handleSeachOpen = () => {
     setIsSearchOpen(true);
-    setTimeout(() => {
-      inputRef.current?.focus();
-    }, 50);
+    setTimeout(() => inputRef.current?.focus(), 50);
   };
 
   useEffect(() => {
@@ -32,17 +29,12 @@ export const Search = ({ placeholder = "Поиск..." }: SearchProps) => {
         containerRef.current &&
         !containerRef.current.contains(event.target as Node)
       ) {
-        if (values.headerSearch === "") {
-          setIsSearchOpen(false);
-        }
+        if (value === "") setIsSearchOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [values.headerSearch]);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [value]);
 
   return (
     <div
@@ -53,11 +45,8 @@ export const Search = ({ placeholder = "Поиск..." }: SearchProps) => {
       <SearchIcon className={styles.searchIcon} />
       <input
         type="text"
-        name="headerSearch"
-        id="headerSearch"
-        value={values.headerSearch}
-        onChange={handleChange}
-        onBlur={handleBlur}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         className={styles.searchInput}
         ref={inputRef}

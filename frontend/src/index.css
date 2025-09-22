@@ -191,5 +191,11 @@ h5 {
   gap: 8px;
   overflow-y: auto;
   max-height: calc(100vh - 26px);
+  box-sizing: border-box;
   padding: 20px 16px 20px 40px;
+  z-index: 10000;
+}
+
+.snackbar-container:empty {
+  display: none;
 }

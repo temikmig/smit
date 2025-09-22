@@ -1,109 +1,112 @@
 .tableContainer {
-  width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 0;
+  background: var(--background-white);
+  border-radius: 8px;
+  position: relative;
   height: 100%;
 }
 
 .tableControls {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 16px;
+  background: var(--background-white);
   position: sticky;
   top: 0;
-  z-index: 10;
-  padding: 12px 0px;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  z-index: 3;
+  border-radius: 8px 8px 0px 0px;
+}
+
+.searchCont {
+  flex: 1;
 }
 
 .tableWrapper {
   overflow-x: auto;
   overflow-y: auto;
-  background: var(--background-white);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-radius: 16px;
+  max-height: calc(100% - 128px);
+  position: relative;
 }
 
 .table {
-  min-width: 800px;
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  animation: fadeIn 0.3s ease-in;
+  border-collapse: collapse;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.table thead {
-  position: sticky;
-  top: 0;
-  background: var(--background-blue);
-  color: var(--text-white);
-  z-index: 5;
-}
-
-.table th,
-.table td {
-  padding: 12px 16px;
-  border-bottom: 1px solid #e5e7eb;
-  transition: background 0.2s;
-}
-
-.table th {
+.table thead th {
   text-align: left;
+  padding: 20px 8px;
+  background: var(--background-whitegray);
+  cursor: pointer;
+  user-select: none;
+  transition: 0.2s;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
 }
 
-.table tr:last-child td {
-  border-bottom: none;
+th .trCont {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
 }
 
-.table tbody tr:hover {
-  background: linear-gradient(90deg, #e0f2ff, #fff7ed);
+.clickableHeader:hover {
+  background: var(--background-gray);
 }
 
-.table tbody tr:nth-child(even) {
-  background-color: #f9fafb;
+td {
+  padding: 16px 8px;
+  border-top: 1px solid var(--border-whitegray);
 }
 
 .empty {
   text-align: center;
+  color: var(--text-gray);
+  padding: 16px 0;
+}
+
+.paginationContainer {
+  background: var(--background-whitegray);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
   padding: 16px;
-  color: #9ca3af;
+  border-radius: 0px 0px 8px 8px;
 }
 
-/* Скроллбар */
-/* .tableWrapper::-webkit-scrollbar {
-  height: 8px;
+.paginationButtons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
 }
-.tableWrapper::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
-.tableWrapper::-webkit-scrollbar-thumb {
-  background: #9ca3af;
-  border-radius: 4px;
-}
-.tableWrapper::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
-} */
 
-/* Кнопки в заголовках */
-.table th button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  color: #374151;
+.paginationLengthRows {
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: flex-start;
+  width: 50%;
+  height: 32px;
 }
-.table th button:hover {
-  color: #1f2937;
+
+.paginationShowRows {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  width: 50%;
+}
+
+.paginationShowRows .select {
+  width: 75px;
+}
+
+.dots {
+  font-size: 14px;
+  padding: 0 4px;
 }

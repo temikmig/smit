@@ -15,7 +15,9 @@ interface SnackbarProps extends SnackbarData {
 
 export const Snackbar = ({ title, message, mode, onClose }: SnackbarProps) => {
   return (
-    <div className={clsx(styles.snackbarCont, styles[mode])}>
+    <div
+      className={clsx(styles.snackbarCont, styles[mode], "shadow-container")}
+    >
       <div className={styles.snackbarHead}>
         {mode === "error" && <CrossCircleIcon />}
         {(mode === "attention" || mode === "info") && <AttentionIcon />}

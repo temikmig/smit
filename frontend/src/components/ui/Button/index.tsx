@@ -5,7 +5,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "primary" | "secondary" | "outline";
   size?: "small" | "medium" | "big";
   icon?: ReactNode;
-  children: string;
+  children?: string;
 };
 
 const Button: React.FC<ButtonProps> = ({
