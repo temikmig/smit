@@ -32,7 +32,7 @@ export const router = createBrowserRouter(
               handle: { title: "Дашборд" },
             },
             {
-              path: "storages/*",
+              path: "storage",
               element: <ProtectedRoutes type="admin" whithOutlet />,
               children: storagesRoutes,
               handle: { title: "Склады" },

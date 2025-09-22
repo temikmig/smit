@@ -1,14 +1,10 @@
 import { useCallback, useState } from "react";
-import { useParams } from "react-router-dom";
-import styles from "./StoragePage.module.css";
-import {
-  useGetStorageByIdQuery,
-  useGetStorageProductsQuery,
-} from "../../api/storagesApi";
+import { useGetStorageProductsQuery } from "../../api/storagesApi";
 import LoaderPage from "../../components/ui/LoaderPage";
-import { useDynamicHeaderTitle } from "../../common/hooks/useDynamicHeaderTitle";
 import { Table, type Column } from "../../components/ui/Table";
 import Button from "../../components/ui/Button";
+
+// import styles from "./Storage.module.css";
 
 type ProductType = {
   id: string;
@@ -25,43 +21,35 @@ type ProductType = {
   quantity_material: number;
 };
 
-export const StoragePage = () => {
-  const { id } = useParams();
-
+export const Storage = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [search, setSearch] = useState("");
   const [sortColumn, setSortColumn] = useState<keyof ProductType | null>(null);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc" | null>(null);
 
-  const { data: storageData, isLoading: isLoadingStorage } =
-    useGetStorageByIdQuery(id!, { skip: !id });
-
   const { data: productsData, isLoading: isLoadingProducts } =
-    useGetStorageProductsQuery(
-      {
-        storageId: id!,
-        page,
-        limit,
-        search,
-      },
-      { skip: !id }
-    );
-
-  useDynamicHeaderTitle(storageData?.title);
+    useGetStorageProductsQuery({
+      page,
+      limit,
+      search,
+    });
 
   const columns: Column<ProductType>[] = [
-    { key: "id", title: "ID" },
-    { key: "name", title: "Название" },
     { key: "sku", title: "Артикул" },
+    { key: "name", title: "Название" },
     { key: "category", title: "Категория" },
-    { key: "quantity_product", title: "Товара" },
-    { key: "quantity_material", title: "Материала" },
+    { key: "price_storage", title: "Цена хранения/продажи" },
+
+    { key: "unit_sale", title: "Ед.изм. (продажа)" },
     {
       key: "price_writeoff",
       title: "Цена списания",
       render: (v) => `${v} ₽`,
     },
+    { key: "unit_writeoff", title: "Ед.изм. (списание)	" },
+    { key: "quantity_product", title: "Кол-во товара" },
+    { key: "quantity_material", title: "	Кол-во материала" },
   ];
 
   const handleSearchChange = useCallback((val: string) => {
@@ -83,11 +71,7 @@ export const StoragePage = () => {
     []
   );
 
-  if (isLoadingStorage || isLoadingProducts) return <LoaderPage />;
-
-  if (!storageData) {
-    return <div className={styles.storagePageCont}>Склад не найден</div>;
-  }
+  if (isLoadingProducts) return <LoaderPage />;
 
   return (
     <Table

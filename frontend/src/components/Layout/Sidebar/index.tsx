@@ -12,7 +12,7 @@ import styles from "./Sidebar.module.css";
 export const Sidebar = () => {
   const menuItems = [
     { title: "Дашборд", icon: <HomeIcon />, navTo: "/dashboard" },
-    { title: "Склады", icon: <BoxIcon />, navTo: "/storages" },
+    { title: "Склад", icon: <BoxIcon />, navTo: "/storage" },
     { title: "Отчеты", icon: <CharIcon />, navTo: "/reports" },
     { title: "Сотрудники", icon: <PersIcon />, navTo: "/employees" },
     { title: "Настройки", icon: <SettingsIcon />, navTo: "/settings" },
