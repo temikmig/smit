@@ -25,7 +25,7 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
   };
 
   return (
-    <ModalContext.Provider value={{ openModal }}>
+    <ModalContext.Provider value={{ openModal, closeModal }}>
       {children}
       {modals.map((modal) => {
         return (
@@ -46,11 +46,13 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
             <Modal
               isOpen
               onClose={() => closeModal(modal.id)}
+              content={modal.data.content}
               closeButton={modal.data.closeButton}
               title={modal.data.title}
-            >
-              {modal.data.content}
-            </Modal>
+              description={modal.data.description}
+              primaryButton={modal.data.primaryButton}
+              secondaryButton={modal.data.secondaryButton}
+            />
           </Dropdown>
         );
       })}

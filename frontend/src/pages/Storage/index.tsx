@@ -1,8 +1,14 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useGetStorageProductsQuery } from "../../api/storagesApi";
 import LoaderPage from "../../components/ui/LoaderPage";
 import { Table, type Column } from "../../components/ui/Table";
 import Button from "../../components/ui/Button";
+import { AppsAddIcon, AppsDeleteIcon } from "../../assets/icons";
+import { useModal } from "../../common/hooks/useModal";
+import {
+  ContextMenu,
+  type ContextMenuItem,
+} from "../../components/ui/ContextMenu";
 
 // import styles from "./Storage.module.css";
 
@@ -19,6 +25,62 @@ type ProductType = {
   conversion_rate: number;
   quantity_product: number;
   quantity_material: number;
+};
+
+const RightTableCont = () => {
+  const [isActionsOpen, setIsActionsOpen] = useState(false);
+
+  const { openModal } = useModal();
+
+  const items: ContextMenuItem[] = [
+    {
+      id: "edit",
+      icon: <AppsAddIcon />,
+      label: "Оформить поступление",
+      color: "blue",
+      onClick: () => {
+        openModal({
+          title: "Поступление на склад",
+          content: <>Окно с поступлением</>,
+        });
+      },
+    },
+    {
+      id: "delete",
+      icon: <AppsDeleteIcon />,
+      label: "Оформить списание",
+      color: "red",
+      onClick: () => {
+        openModal({
+          title: "Списание со склада",
+          content: <>Окно со списанием</>,
+        });
+      },
+    },
+  ];
+
+  const buttonRef = useRef<HTMLDivElement>(null);
+
+  const handleActions = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    setIsActionsOpen((prev) => !prev);
+  };
+
+  return (
+    <>
+      <div ref={buttonRef}>
+        <Button onClick={handleActions}>Действия со складом</Button>
+      </div>
+      <ContextMenu
+        anchorRef={buttonRef}
+        items={items}
+        open={isActionsOpen}
+        placement="bottom end"
+        onClose={() => setIsActionsOpen(false)}
+      />
+    </>
+  );
 };
 
 export const Storage = () => {
@@ -88,7 +150,7 @@ export const Storage = () => {
       sortColumn={sortColumn}
       sortOrder={sortOrder}
       onSortChange={handleSortChange}
-      rightContainer={<Button>Добавить в склад</Button>}
+      rightContainer={<RightTableCont />}
     />
   );
 };

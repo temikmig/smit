@@ -1,6 +1,6 @@
 import { DevelopMessage } from "../../components/DevelopMessage";
 
-export const Settings = () => {
+export const CheckLists = () => {
   return (
     <div>
       <DevelopMessage />

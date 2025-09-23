@@ -2,9 +2,12 @@ import { type ReactNode } from "react";
 
 export type ModalData = {
   title?: string;
-  content: ReactNode;
+  description?: string;
+  content?: ReactNode;
   closeButton?: boolean;
   overlayClose?: boolean;
+  primaryButton?: { text: string; onClick: () => void };
+  secondaryButton?: { text: string; onClick: () => void };
 };
 
 export type ModalItem = {
@@ -14,5 +17,6 @@ export type ModalItem = {
 };
 
 export type ModalContextType = {
-  openModal: (data: ModalData) => void;
+  openModal: (data: ModalData) => string;
+  closeModal: (id: string) => void;
 };

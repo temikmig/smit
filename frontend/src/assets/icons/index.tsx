@@ -18,6 +18,7 @@ export * from "./HomeIcon";
 export * from "./CharIcon";
 export * from "./ToDoIcon";
 export * from "./BoxIcon";
+export * from "./CheckListIcon";
 export * from "./PersIcon";
 export * from "./SettingsIcon";
 export * from "./NotificationsIcon";
@@ -41,3 +42,9 @@ export * from "./AttentionIcon";
 
 export * from "./CrossIcon";
 export * from "./CrossSmallIcon";
+
+export * from "./LoginIcon";
+export * from "./LogoutIcon";
+
+export * from "./AppsAddIcon";
+export * from "./AppsDeleteIcon";

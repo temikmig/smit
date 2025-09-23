@@ -1,0 +1,34 @@
+.loginPage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoCont {
+  display: flex;
+  justify-content: center;
+  min-width: 400px;
+}
+
+.loginCont {
+  border-radius: 32px;
+  background: var(--background-layout);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formCont {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.buttonsCont {
+  display: flex;
+  justify-content: flex-end;
+}

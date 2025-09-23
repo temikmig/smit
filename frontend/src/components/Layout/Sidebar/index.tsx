@@ -4,6 +4,7 @@ import {
   CharIcon,
   PersIcon,
   SettingsIcon,
+  CheckListIcon,
 } from "../../../assets/icons";
 import { SmitLogo } from "../../../assets/logo/SmitLogo";
 import { SidebarMenu } from "../../SidebarMenu";
@@ -13,9 +14,15 @@ export const Sidebar = () => {
   const menuItems = [
     { title: "Дашборд", icon: <HomeIcon />, navTo: "/dashboard" },
     { title: "Склад", icon: <BoxIcon />, navTo: "/storage" },
+    { title: "Чеклисты", icon: <CheckListIcon />, navTo: "/checklists" },
     { title: "Отчеты", icon: <CharIcon />, navTo: "/reports" },
     { title: "Сотрудники", icon: <PersIcon />, navTo: "/employees" },
     { title: "Настройки", icon: <SettingsIcon />, navTo: "/settings" },
+    {
+      title: "Storybook",
+      icon: <SettingsIcon />,
+      navTo: "/storybook",
+    },
   ];
 
   return (

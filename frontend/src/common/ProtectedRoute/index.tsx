@@ -1,28 +1,25 @@
 import type { JSX } from "react";
 import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 interface ProtectedRoutesProps {
   children?: JSX.Element;
-  whithOutlet?: boolean;
+  withOutlet?: boolean;
   type: "admin" | "user";
 }
 
 export default function ProtectedRoutes({
   children,
-  whithOutlet = false,
+  withOutlet = false,
   type,
 }: ProtectedRoutesProps) {
-  const isAuth = true;
+  const { isAuth, isAdmin } = useAuth();
 
-  const isAdmin = true;
+  if (!isAuth) return <Navigate to="/login" replace />;
 
-  if (type === "admin") {
-    if (!isAdmin && children) return <Navigate to="/error/403" replace />;
-  }
+  if (type === "user" && !isAuth) return <Navigate to="/login" replace />;
 
-  if (type === "user") {
-    if (!isAuth && children) return <Navigate to="/error/403" replace />;
-  }
+  if (type === "admin" && !isAdmin) return <Navigate to="/error/403" replace />;
 
-  return whithOutlet ? <Outlet /> : children;
+  return withOutlet ? <Outlet /> : children;
 }

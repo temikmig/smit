@@ -16,6 +16,7 @@ interface ContextMenuProps {
   items: ContextMenuItem[];
   open: boolean;
   onClose: () => void;
+  placement?: Placement;
   offsetX?: number;
   offsetY?: number;
 }
@@ -25,11 +26,12 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
   items,
   open,
   onClose,
+  placement = "top end",
   offsetX = 0,
   offsetY = 8,
 }) => {
   const [currentPlacement, setCurrentPlacement] =
-    React.useState<Placement>("top end");
+    React.useState<Placement>(placement);
 
   return (
     <Dropdown

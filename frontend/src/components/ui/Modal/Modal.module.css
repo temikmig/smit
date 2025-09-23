@@ -37,3 +37,9 @@
 .closeModal svg {
   color: var(--icons-white);
 }
+
+.modalButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
