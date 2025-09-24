@@ -6,7 +6,7 @@ export type LoginRequest = {
 export const UserRoleEnum = {
   ADMIN: "ADMIN",
   MANAGER: "MANAGER",
-  EMPLOYEE: "EMPLOYEE",
+  WORKER: "WORKER",
 } as const;
 
 export type UserRole = (typeof UserRoleEnum)[keyof typeof UserRoleEnum];
@@ -14,7 +14,7 @@ export type UserRole = (typeof UserRoleEnum)[keyof typeof UserRoleEnum];
 export const ROLE_LABELS: Record<UserRole, string> = {
   ADMIN: "Администратор",
   MANAGER: "Менеджер",
-  EMPLOYEE: "Сотрудник",
+  WORKER: "Сотрудник",
 };
 
 export interface User {
@@ -23,6 +23,7 @@ export interface User {
   name: string;
   lastName: string;
   role: UserRole;
+  password?: string;
   userAvatar?: string | null;
   createdAt: string;
   updatedAt: string;
@@ -36,16 +37,6 @@ export interface AuthResponse {
 export type LoginResponse = {
   accessToken: string;
   user: User;
-};
-
-export type RegisterRequest = {
-  email: string;
-  password: string;
-};
-
-export type RegisterResponse = {
-  id: number;
-  email: string;
 };
 
 export type LogoutResponse = {

@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import defaultAvatar from "../../assets/defaultAvatar.jpg";
 import styles from "./ProfileAvatar.module.css";
 import { ContextMenu, type ContextMenuItem } from "../ui/ContextMenu";
 import { LogoutIcon, SettingsIcon } from "../../assets/icons";
@@ -7,6 +6,7 @@ import { useAuth } from "../../common/hooks/useAuth";
 import { ROLE_LABELS } from "../../common/types/authTypes";
 import { useModal } from "../../common/hooks/useModal";
 import { useNavigate } from "react-router-dom";
+import { UserAvatar } from "../ui/UserAvatar";
 
 export const ProfileAvatar = () => {
   const [isProfileOptionsOpen, setIsProfileOptionsOpen] = useState(false);
@@ -68,7 +68,7 @@ export const ProfileAvatar = () => {
           ref={buttonRef}
           onClick={handleOptions}
         >
-          <img src={defaultAvatar} alt="user_avatar" />
+          <UserAvatar user={user} />
           <div className={styles.settingsIcon}>
             <SettingsIcon />
           </div>

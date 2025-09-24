@@ -33,12 +33,19 @@ export const Modal = ({
       {(primaryButton || secondaryButton) && (
         <div className={styles.modalButtons}>
           {secondaryButton && (
-            <Button variant="secondary" onClick={secondaryButton.onClick}>
+            <Button
+              variant="secondary"
+              onClick={secondaryButton.onClick}
+              disabled={secondaryButton.disabled}
+            >
               {secondaryButton.text}
             </Button>
           )}
           {primaryButton && (
-            <Button onClick={primaryButton.onClick}>
+            <Button
+              onClick={primaryButton.onClick}
+              disabled={primaryButton.disabled}
+            >
               {primaryButton.text}
             </Button>
           )}

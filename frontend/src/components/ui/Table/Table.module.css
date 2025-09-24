@@ -1,11 +1,17 @@
 .tableContainer {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 0;
   background: var(--background-white);
   border-radius: 8px;
   position: relative;
   height: 100%;
+}
+
+.tableTopCont {
+  flex: 1;
+  overflow-y: auto;
 }
 
 .tableControls {
@@ -25,9 +31,6 @@
 }
 
 .tableWrapper {
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: calc(100% - 128px);
   position: relative;
 }
 
@@ -38,13 +41,12 @@
 
 .table thead th {
   text-align: left;
-  padding: 20px 8px;
-  background: var(--background-whitegray);
-  cursor: pointer;
+  padding: 20px 16px;
+  background: var(--table-header);
   user-select: none;
   transition: 0.2s;
   position: sticky;
-  top: 0px;
+  top: 64px;
   z-index: 2;
 }
 
@@ -56,11 +58,16 @@ th .trCont {
 }
 
 .clickableHeader:hover {
-  background: var(--background-gray);
+  cursor: pointer;
+  background: var(--table-header-hover);
+}
+
+.clickableHeader:active {
+  background: var(--table-header-active);
 }
 
 td {
-  padding: 16px 8px;
+  padding: 16px;
   border-top: 1px solid var(--border-whitegray);
 }
 

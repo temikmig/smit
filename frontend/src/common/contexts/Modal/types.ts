@@ -6,8 +6,8 @@ export type ModalData = {
   content?: ReactNode;
   closeButton?: boolean;
   overlayClose?: boolean;
-  primaryButton?: { text: string; onClick: () => void };
-  secondaryButton?: { text: string; onClick: () => void };
+  primaryButton?: { text: string; onClick: () => void; disabled?: boolean };
+  secondaryButton?: { text: string; onClick: () => void; disabled?: boolean };
 };
 
 export type ModalItem = {

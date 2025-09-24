@@ -11,6 +11,7 @@ interface TooltipProps {
   offsetY?: number;
   delay?: number;
   withArrow?: boolean;
+  show?: boolean;
 }
 
 export const Tooltip = ({
@@ -20,6 +21,7 @@ export const Tooltip = ({
   offsetX = 0,
   offsetY = 0,
   withArrow,
+  show = true,
 }: TooltipProps) => {
   const [open, setOpen] = useState(false);
   const [currentPlacement, setCurrentPlacement] =
@@ -42,6 +44,8 @@ export const Tooltip = ({
   const handleMouseLeave = () => {
     hideTimer.current = setTimeout(() => setOpen(false), 150);
   };
+
+  if (!show) return <>{children}</>;
 
   return (
     <div

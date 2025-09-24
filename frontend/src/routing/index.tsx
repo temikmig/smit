@@ -30,7 +30,7 @@ export const router = createBrowserRouter(
           children: [
             {
               path: "dashboard",
-              element: <ProtectedRoutes type="admin" withOutlet />,
+              element: <ProtectedRoutes type="user" withOutlet />,
               children: [{ index: true, element: <Dashboard /> }],
               handle: { title: "Дашборд" },
             },
@@ -42,7 +42,7 @@ export const router = createBrowserRouter(
             },
             {
               path: "checklists",
-              element: <ProtectedRoutes type="admin" withOutlet />,
+              element: <ProtectedRoutes type="user" withOutlet />,
               children: checklistsRoutes,
               handle: { title: "Чеклисты" },
             },

@@ -19,12 +19,29 @@ function hashToken(token: string) {
 }
 
 authRouter.post("/register", async (req, res) => {
-  const { login, password, name, lastName, role } = req.body;
+  const { login, password, name, lastName } = req.body;
+
+  if (!login || !password) {
+    return res.status(400).json({ msg: "Login and password required" });
+  }
+
+  const exists = await prisma.user.findUnique({ where: { login } });
+  if (exists) return res.status(409).json({ msg: "User already exists" });
+
   const hash = await bcrypt.hash(password, 12);
+
   const user = await prisma.user.create({
-    data: { login, password: hash, name, lastName, role },
+    data: {
+      login,
+      password: hash,
+      name,
+      lastName,
+      role: "ADMIN", // 👈 дефолтная роль
+    },
+    select: { id: true, login: true, name: true, lastName: true, role: true },
   });
-  res.status(201).json({ id: user.id, login: user.login, role: user.role });
+
+  res.status(201).json(user);
 });
 
 authRouter.post("/login", async (req, res) => {

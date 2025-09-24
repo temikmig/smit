@@ -15,10 +15,12 @@ import {
 } from "../../../assets/icons";
 
 export type Column<T extends object> = {
-  key: keyof T;
-  title: string;
-  render?: (value: T[keyof T], row: T) => React.ReactNode;
-  renderHeader?: (title: string, key: keyof T) => React.ReactNode;
+  key: keyof T | string;
+  title?: string;
+  width?: number;
+  sort?: boolean;
+  render?: (value: T[keyof T] | string | undefined, row: T) => React.ReactNode;
+  renderHeader?: (title: string, key: keyof T | string) => React.ReactNode;
 };
 
 type TableProps<T extends object> = {
@@ -100,77 +102,85 @@ export function Table<T extends object>({
       className={clsx(styles.tableContainer, className, "shadow-container")}
       ref={tableRef}
     >
-      <div className={styles.tableControls}>
-        <div className={styles.searchCont}>
-          <Input
-            value={localSearch}
-            onChange={(e) => setLocalSearch(e.target.value)}
-            leftIcon={<SearchIcon />}
-            placeholder="Поиск..."
-          />
+      <div className={styles.tableTopCont}>
+        <div className={styles.tableControls}>
+          <div className={styles.searchCont}>
+            <Input
+              value={localSearch}
+              onChange={(e) => setLocalSearch(e.target.value)}
+              leftIcon={<SearchIcon />}
+              placeholder="Поиск..."
+            />
+          </div>
+          {rightContainer}
         </div>
-        {rightContainer}
-      </div>
-      <div className={styles.tableWrapper}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              {columns.map((col) => (
-                <th
-                  key={String(col.key)}
-                  onClick={() => handleSort(col.key)}
-                  className={clsx(
-                    styles.clickableHeader,
-                    sortColumn === col.key && styles.sorted
-                  )}
-                >
-                  <div className={styles.trCont}>
-                    <p className="text_medium_bold">
-                      {col.renderHeader
-                        ? col.renderHeader(col.title, col.key)
-                        : col.title}
-                    </p>
-                    {sortColumn === col.key &&
-                      (sortOrder === "asc" ? (
-                        <ArrowUpMinIcon />
-                      ) : (
-                        <ArrowDownMinIcon />
-                      ))}
-                  </div>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {data.length === 0 ? (
+        <div className={styles.tableWrapper}>
+          <table className={styles.table}>
+            <thead>
               <tr>
-                <td colSpan={columns.length} className={styles.empty}>
-                  Нет данных
-                </td>
+                {columns.map((col) => (
+                  <th
+                    key={String(col.key)}
+                    onClick={() => col.sort && handleSort(col.key as keyof T)}
+                    className={clsx(
+                      col.sort && styles.clickableHeader,
+                      sortColumn === col.key && styles.sorted
+                    )}
+                    style={{ width: col.width }}
+                  >
+                    <div className={styles.trCont}>
+                      {col.title && (
+                        <p className="text_medium_bold">
+                          {col.renderHeader
+                            ? col.renderHeader(col.title, col.key)
+                            : col.title}
+                        </p>
+                      )}
+                      {sortColumn === col.key &&
+                        (sortOrder === "asc" ? (
+                          <ArrowUpMinIcon />
+                        ) : (
+                          <ArrowDownMinIcon />
+                        ))}
+                    </div>
+                  </th>
+                ))}
               </tr>
-            ) : (
-              data.map((row) => (
-                <tr
-                  key={
-                    rowKey
-                      ? rowKey(row)
-                      : String(
-                          (row as { id?: string | number }).id ?? Math.random()
-                        )
-                  }
-                >
-                  {columns.map((col) => (
-                    <td key={String(col.key)}>
-                      {col.render
-                        ? col.render(row[col.key], row)
-                        : String(row[col.key] ?? "")}
-                    </td>
-                  ))}
+            </thead>
+            <tbody>
+              {data.length === 0 ? (
+                <tr>
+                  <td colSpan={columns.length} className={styles.empty}>
+                    Нет данных
+                  </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+              ) : (
+                data.map((row) => (
+                  <tr
+                    key={
+                      rowKey
+                        ? rowKey(row)
+                        : String(
+                            (row as { id?: string | number }).id ??
+                              Math.random()
+                          )
+                    }
+                  >
+                    {columns.map((col) => (
+                      <td key={String(col.key)}>
+                        {col.render
+                          ? col.render(undefined, row)
+                          : col.key in row
+                          ? String(row[col.key as keyof T] ?? "")
+                          : null}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
       <div className={styles.paginationContainer}>
         <div className={styles.paginationLengthRows}>

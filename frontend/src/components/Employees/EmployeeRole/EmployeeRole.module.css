@@ -1,0 +1,18 @@
+.employeeRoleCont {
+  display: inline-flex;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: var(--text-white);
+}
+
+.employeeRoleCont.ADMIN {
+  background: #b663c5;
+}
+
+.employeeRoleCont.MANAGER {
+  background: #caa71a;
+}
+
+.employeeRoleCont.WORKER {
+  background: #0095ff;
+}

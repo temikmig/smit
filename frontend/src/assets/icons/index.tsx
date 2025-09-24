@@ -48,3 +48,10 @@ export * from "./LogoutIcon";
 
 export * from "./AppsAddIcon";
 export * from "./AppsDeleteIcon";
+
+export * from "./UserIcon";
+export * from "./UserAddIcon";
+export * from "./UserDeleteIcon";
+export * from "./UserRemoveIcon";
+
+export * from "./KeyIcon";

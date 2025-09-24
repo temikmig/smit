@@ -1,0 +1,33 @@
+.employeeActionsCont {
+  display: flex;
+  gap: 16px;
+}
+
+.employeeActionsCont button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.employeeActionsCont button:hover {
+  opacity: 0.8;
+}
+
+.employeeActionsCont button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.employeeActionsCont button:active {
+  transform: scale(0.95);
+}
+
+.employeeActionsCont button svg {
+  color: var(--icons-blue);
+}

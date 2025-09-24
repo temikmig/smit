@@ -17,11 +17,12 @@ export const RootLayout = () => {
   return (
     <>
       <LoadingScreen>
-        <ModalProvider>
-          <SnackbarProvider>
+        {" "}
+        <SnackbarProvider>
+          <ModalProvider>
             <Outlet />
-          </SnackbarProvider>
-        </ModalProvider>
+          </ModalProvider>{" "}
+        </SnackbarProvider>
       </LoadingScreen>
     </>
   );

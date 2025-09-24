@@ -277,7 +277,15 @@ export const Dropdown = ({
       }}
       onClick={(e) => e.stopPropagation()}
     >
-      <div className={clsx(styles.dropdownWrapper, className)}>{children}</div>
+      <div
+        className={clsx(
+          styles.dropdownWrapper,
+          className,
+          modal && styles.modalWrapper
+        )}
+      >
+        {children}
+      </div>
     </div>
   );
 

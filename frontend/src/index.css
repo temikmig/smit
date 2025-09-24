@@ -95,7 +95,11 @@ body {
   --button-secondary-hover: #5a6268;
   --button-secondary-disabled: #b8bdc4;
   --button-outline-hover: #dee2e5;
-  --button-outline-disabled: #eaeaea;
+  --button-outline-disabled: #d9e1e9;
+
+  --table-header: #e5ebf1;
+  --table-header-hover: #cdd7e2;
+  --table-header-active: #b4beca;
 
   --border-gray: #b8bdc4;
   --border-whitegray: #e5ebf1;

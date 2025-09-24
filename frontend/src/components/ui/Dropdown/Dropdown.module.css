@@ -19,6 +19,10 @@
   border-radius: 8px;
 }
 
+.dropdownWrapper.modalWrapper {
+  max-height: initial;
+}
+
 .dropdownWrapper::-webkit-scrollbar {
   width: 6px;
 }
