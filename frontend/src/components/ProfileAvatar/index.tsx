@@ -2,11 +2,11 @@ import { useRef, useState } from "react";
 import styles from "./ProfileAvatar.module.css";
 import { ContextMenu, type ContextMenuItem } from "../ui/ContextMenu";
 import { LogoutIcon, SettingsIcon } from "../../assets/icons";
-import { useAuth } from "../../common/hooks/useAuth";
 import { ROLE_LABELS } from "../../common/types/authTypes";
 import { useModal } from "../../common/hooks/useModal";
 import { useNavigate } from "react-router-dom";
 import { UserAvatar } from "../ui/UserAvatar";
+import { useGetMeQuery } from "../../api/usersApi";
 
 export const ProfileAvatar = () => {
   const [isProfileOptionsOpen, setIsProfileOptionsOpen] = useState(false);
@@ -21,7 +21,7 @@ export const ProfileAvatar = () => {
       icon: <SettingsIcon />,
       label: "Настройки профиля",
       color: "default",
-      onClick: () => alert("Edit!"),
+      onClick: () => navigate("/settings/user"),
     },
     {
       id: "delete",
@@ -56,7 +56,7 @@ export const ProfileAvatar = () => {
     setIsProfileOptionsOpen((prev) => !prev);
   };
 
-  const { user } = useAuth();
+  const { data: user } = useGetMeQuery();
 
   if (user)
     return (

@@ -14,8 +14,12 @@ export const usersApi = createApi({
       return headers;
     },
   }),
+  tagTypes: ["Me"],
   endpoints: (builder) => ({
-    getMe: builder.query<User, void>({ query: () => "/users/me" }),
+    getMe: builder.query<User, void>({
+      query: () => "/users/me",
+      providesTags: [{ type: "Me" }],
+    }),
     getUsers: builder.query<
       { users: User[]; total: number },
       {
@@ -52,6 +56,7 @@ export const usersApi = createApi({
         method: "PATCH",
         body: data,
       }),
+      invalidatesTags: [{ type: "Me" }],
     }),
     deleteUser: builder.mutation<void, string>({
       query: (id) => ({ url: `/users/delete/${id}`, method: "DELETE" }),

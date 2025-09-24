@@ -55,3 +55,5 @@ export * from "./UserDeleteIcon";
 export * from "./UserRemoveIcon";
 
 export * from "./KeyIcon";
+
+export * from "./UploadIcon";
